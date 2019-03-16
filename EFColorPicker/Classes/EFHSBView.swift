@@ -29,7 +29,7 @@ import UIKit
 // The view to edit HSB color components.
 public class EFHSBView: UIView, EFColorView, UITextFieldDelegate {
 
-    let EFColorSampleViewHeight: CGFloat = 30.0
+    let EFColorSampleViewHeight: CGFloat = 0.0
     let EFViewMargin: CGFloat = 20.0
     let EFColorWheelDimension: CGFloat = 200.0
 
@@ -109,6 +109,7 @@ public class EFHSBView: UIView, EFColorView, UITextFieldDelegate {
         brightnessView.format = "%.2f"
         brightnessView.translatesAutoresizingMaskIntoConstraints = false
         brightnessView.setColors(colors: [UIColor.black, UIColor.white])
+        brightnessView.isHidden = true
         self.addSubview(brightnessView)
 
         colorWheel.addTarget(

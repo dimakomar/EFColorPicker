@@ -75,19 +75,7 @@ public class EFColorSelectionViewController: UIViewController, EFColorViewDelega
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-
-        let segmentControl: UISegmentedControl = UISegmentedControl(
-            items: [NSLocalizedString("RGB", comment: ""), NSLocalizedString("HSB", comment: "")]
-        )
-        segmentControl.addTarget(
-            self,
-            action: #selector(segmentControlDidChangeValue(_:)),
-            for: UIControl.Event.valueChanged
-        )
-        segmentControl.selectedSegmentIndex = 0
-        self.navigationItem.titleView = segmentControl
-
-        self.colorSelectionView().setSelectedIndex(index: EFSelectedColorView.RGB, animated: false)
+        self.colorSelectionView().setSelectedIndex(index: EFSelectedColorView.HSB, animated: false)
         self.colorSelectionView().delegate = self
         self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
     }

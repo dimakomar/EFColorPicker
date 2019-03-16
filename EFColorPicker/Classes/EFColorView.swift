@@ -28,7 +28,7 @@ import UIKit
 
 //  The delegate of a EFColorView object must adopt the EFColorViewDelegate protocol.
 //  Methods of the protocol allow the delegate to handle color value changes.
-public protocol EFColorViewDelegate: class {
+public protocol EFColorViewDelegate: AnyObject {
 
     // Tells the data source to return the color components.
     // @param colorView The color view.
