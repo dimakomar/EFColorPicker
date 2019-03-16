@@ -32,6 +32,8 @@ public class EFColorWheelView: UIControl {
     
     var isTouched = false
 
+  var wheelImage: CGImage?
+
     // The hue value.
     var hue: CGFloat = 0.0 {
         didSet {
@@ -88,6 +90,7 @@ public class EFColorWheelView: UIControl {
         self.layer.delegate = self
         self.layer.addSublayer(self.indicatorLayer)
 
+
         // [self setSelectedPoint:CGPointMake(dimension / 2, dimension / 2)];
     }
 
@@ -115,6 +118,24 @@ public class EFColorWheelView: UIControl {
         }
     }
 
+  func drawWheel() {
+    guard wheelImage == nil else { return }
+    let dimension: CGFloat = min(self.frame.width, self.frame.height)
+    guard let bitmapData = CFDataCreateMutable(nil, 0) else {
+      return
+    }
+
+    CFDataSetLength(bitmapData, CFIndex(dimension * dimension * 4))
+    self.ef_colorWheelBitmap(
+      bitmap: CFDataGetMutableBytePtr(bitmapData),
+      withSize: CGSize(width: dimension, height: dimension)
+    )
+    if let image = self.ef_imageWithRGBAData(data: bitmapData, width: Int(dimension), height: Int(dimension)) {
+      wheelImage = image
+      self.layer.contents = image
+    }
+  }
+
     func onTouchEventWithPosition(point: CGPoint) {
         let radius: CGFloat = self.bounds.width / 2
 
@@ -141,19 +162,8 @@ public class EFColorWheelView: UIControl {
 
     // MARK:- CALayerDelegate methods
     override public func display(_ layer: CALayer) {
-        let dimension: CGFloat = min(self.frame.width, self.frame.height)
-        guard let bitmapData = CFDataCreateMutable(nil, 0) else {
-            return
-        }
-
-        CFDataSetLength(bitmapData, CFIndex(dimension * dimension * 4))
-        self.ef_colorWheelBitmap(
-            bitmap: CFDataGetMutableBytePtr(bitmapData),
-            withSize: CGSize(width: dimension, height: dimension)
-        )
-        if let image = self.ef_imageWithRGBAData(data: bitmapData, width: Int(dimension), height: Int(dimension)) {
-            self.layer.contents = image
-        }
+      drawWheel()
+      self.layer.contents = wheelImage
     }
 
     override public func layoutSublayers(of layer: CALayer) {
