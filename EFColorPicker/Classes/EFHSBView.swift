@@ -31,7 +31,7 @@ public class EFHSBView: UIView, EFColorView, UITextFieldDelegate {
 
     let EFColorSampleViewHeight: CGFloat = 0.0
     let EFViewMargin: CGFloat = 20.0
-    let EFColorWheelDimension: CGFloat = 200.0
+    let EFColorWheelDimension: CGFloat = 150.0
 
     private let colorWheel: EFColorWheelView = EFColorWheelView()
     let brightnessView: EFColorComponentView = EFColorComponentView()
