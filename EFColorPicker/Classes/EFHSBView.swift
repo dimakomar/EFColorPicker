@@ -31,7 +31,7 @@ public class EFHSBView: UIView, EFColorView, UITextFieldDelegate {
 
     let EFColorSampleViewHeight: CGFloat = 0.0
     let EFViewMargin: CGFloat = 20.0
-    let EFColorWheelDimension: CGFloat = 150.0
+    let EFColorWheelDimension: CGFloat = 200.0
 
     private let colorWheel: EFColorWheelView = EFColorWheelView()
     let brightnessView: EFColorComponentView = EFColorComponentView()
@@ -148,7 +148,7 @@ public class EFHSBView: UIView, EFColorView, UITextFieldDelegate {
         var layoutConstraints: [NSLayoutConstraint] = []
         let visualFormats = [
             "H:|-margin-[colorWheel(>=color_wheel_dimension)]-margin-|",
-            "V:|-margin-[colorWheel]-(>=margin@250)-|"
+            "V:|-margin-[colorWheel]-(>=margin@200)-|"
         ]
         for visualFormat in visualFormats {
             layoutConstraints.append(
