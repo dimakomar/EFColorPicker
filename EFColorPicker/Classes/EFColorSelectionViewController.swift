@@ -36,7 +36,7 @@ import UIKit
     func colorViewController(_ colorViewCntroller: EFColorSelectionViewController, didChangeColor color: UIColor)
 }
 
-public class EFColorSelectionViewController: UIViewController, EFColorViewDelegate {
+open class EFColorSelectionViewController: UIViewController, EFColorViewDelegate {
 
     // The controller's delegate. Controller notifies a delegate on color change.
     public weak var delegate: EFColorSelectionViewControllerDelegate?
@@ -68,12 +68,12 @@ public class EFColorSelectionViewController: UIViewController, EFColorViewDelega
         }
     }
 
-    override public func loadView() {
+  override open func loadView() {
         let colorSelectionView: EFColorSelectionView = EFColorSelectionView(frame: UIScreen.main.bounds)
         self.view = colorSelectionView
     }
 
-    override public func viewDidLoad() {
+  override open func viewDidLoad() {
         super.viewDidLoad()
         self.colorSelectionView().setSelectedIndex(index: EFSelectedColorView.HSB, animated: false)
         self.colorSelectionView().delegate = self
@@ -87,7 +87,7 @@ public class EFColorSelectionViewController: UIViewController, EFColorViewDelega
         )
     }
 
-    override public func viewWillLayoutSubviews() {
+  override open func viewWillLayoutSubviews() {
         self.colorSelectionView().setNeedsUpdateConstraints()
         self.colorSelectionView().updateConstraintsIfNeeded()
     }
