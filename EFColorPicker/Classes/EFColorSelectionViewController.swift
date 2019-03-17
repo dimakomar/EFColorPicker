@@ -61,9 +61,6 @@ open class EFColorSelectionViewController: UIViewController, EFColorViewDelegate
                 colorSelectionView.hsbColorView.brightnessView.colorTextFieldEnabled != !newValue {
                 colorSelectionView.hsbColorView.brightnessView.colorTextFieldEnabled = !newValue
 
-                for colorComponentView in colorSelectionView.rgbColorView.colorComponentViews {
-                    colorComponentView.colorTextFieldEnabled = !newValue
-                }
             }
         }
     }

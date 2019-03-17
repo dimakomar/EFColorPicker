@@ -30,7 +30,7 @@ import CoreGraphics
 // The color wheel view.
 public class EFColorWheelView: UIControl {
     
-    var isTouched = false
+  var isTouched = false
 
   var wheelImage: CGImage?
 

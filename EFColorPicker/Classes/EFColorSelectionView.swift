@@ -42,7 +42,6 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
     // The selected color view
     private(set) var selectedIndex: EFSelectedColorView = EFSelectedColorView.RGB
 
-    let rgbColorView: EFRGBView = EFRGBView()
     let hsbColorView: EFHSBView = EFHSBView()
 
     weak public var delegate: EFColorViewDelegate?
@@ -72,14 +71,13 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
         UIView.animate(withDuration: animated ? 0.5 : 0.0) {
             [weak self] in
             if let strongSelf = self {
-                strongSelf.rgbColorView.alpha = EFSelectedColorView.RGB == index ? 1.0 : 0.0
                 strongSelf.hsbColorView.alpha = EFSelectedColorView.HSB == index ? 1.0 : 0.0
             }
         }
     }
 
     func selectedView() -> EFColorView? {
-        return (EFSelectedColorView.RGB == self.selectedIndex ? self.rgbColorView : self.hsbColorView) as? EFColorView
+        return self.hsbColorView
     }
 
     func addColorView(view: EFColorView) {
@@ -108,7 +106,6 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
     }
 
     override public func updateConstraints() {
-        self.rgbColorView.setNeedsUpdateConstraints()
         self.hsbColorView.setNeedsUpdateConstraints()
         super.updateConstraints()
     }
@@ -127,7 +124,6 @@ public class EFColorSelectionView: UIView, EFColorView, EFColorViewDelegate {
         self.accessibilityLabel = "color_selection_view"
 
         self.backgroundColor = UIColor.white
-        self.addColorView(view: rgbColorView)
         self.addColorView(view: hsbColorView)
         self.setSelectedIndex(index: EFSelectedColorView.RGB, animated: false)
     }
