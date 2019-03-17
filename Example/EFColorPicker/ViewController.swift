@@ -48,8 +48,12 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate,
 
     //
     @objc func onTestButtonClick(_ sender: UIButton) {
-        isColorTextFieldHidden = !isColorTextFieldHidden
-        testButton.setTitle("isColorTextFieldHidden: \(isColorTextFieldHidden)", for: .normal)
+      let customAlert = ColorAlert().createActionSheet()
+      customAlert.view.layer.cornerRadius = customAlert.view.bounds.width / 26
+      customAlert.view.layoutIfNeeded()
+      customAlert.showActionSheet(controller: self, dimmedColorAlpha: 0.4)
+//        isColorTextFieldHidden = !isColorTextFieldHidden
+//        testButton.setTitle("isColorTextFieldHidden: \(isColorTextFieldHidden)", for: .normal)
     }
 
     // Programmatically
