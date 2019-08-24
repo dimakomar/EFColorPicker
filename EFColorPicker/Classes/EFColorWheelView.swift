@@ -87,6 +87,7 @@ public class EFColorWheelView: UIControl {
 
         self.accessibilityLabel = "color_wheel_view"
 
+        self.layer.backgroundColor = UIColor.systemWhite().cgColor
         self.layer.delegate = self
         self.layer.addSublayer(self.indicatorLayer)
 
@@ -194,7 +195,7 @@ public class EFColorWheelView: UIControl {
                 var hue: CGFloat = 0, saturation: CGFloat = 0, a: CGFloat = 0.0
                 self.ef_colorWheelValueWithPosition(position: CGPoint(x: x, y: y), hue: &hue, saturation: &saturation)
 
-                var rgb: RGB = RGB(1, 1, 1, 1)
+                var rgb: RGB = RGB(1, 1, 1, 0)
                 if saturation < 1.0 {
                     // Antialias the edge of the circle.
                     if saturation > 0.99 {
@@ -255,5 +256,17 @@ public class EFColorWheelView: UIControl {
             intent: CGColorRenderingIntent.defaultIntent
         )
         return imageRef
+    }
+}
+
+extension UIColor {
+    static func systemWhite() -> UIColor {
+        if #available(iOS 13, *) {
+            return UIColor.init { (trait) -> UIColor in
+                // the color can be from your own color config struct as well.
+                return trait.userInterfaceStyle == .dark ? .white : .black
+            }
+        }
+        else { return UIColor.black }
     }
 }
