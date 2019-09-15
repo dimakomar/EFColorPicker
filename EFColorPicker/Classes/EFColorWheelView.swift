@@ -87,7 +87,7 @@ public class EFColorWheelView: UIControl {
 
         self.accessibilityLabel = "color_wheel_view"
 
-        self.layer.backgroundColor = UIColor.systemDark().cgColor
+        self.layer.backgroundColor = UIColor.whiteColor.cgColor
         self.layer.delegate = self
         self.layer.addSublayer(self.indicatorLayer)
 
@@ -260,13 +260,13 @@ public class EFColorWheelView: UIControl {
 }
 
 extension UIColor {
-    static func systemDark() -> UIColor {
+    static var whiteColor: UIColor {
         if #available(iOS 13, *) {
             return UIColor.init { (trait) -> UIColor in
                 // the color can be from your own color config struct as well.
                 return trait.userInterfaceStyle == .dark ? .black : .white
             }
         }
-        else { return UIColor.black }
+        else { return UIColor.white }
     }
 }
