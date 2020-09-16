@@ -8,6 +8,6 @@ target 'EFColorPicker_Example' do
   target 'EFColorPicker_Tests' do
     inherit! :search_paths
 
-    
+    #
   end
 end
