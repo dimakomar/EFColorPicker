@@ -145,7 +145,11 @@ public class EFColorWheelView: UIControl {
         let dist: CGFloat = CGFloat(sqrt(mx * mx + my * my))
 
         if dist <= radius {
-            self.ef_colorWheelValueWithPosition(position: point, hue: &hue, saturation: &saturation)
+            var h = hue
+            var s = saturation
+            ef_colorWheelValueWithPosition(position: point, hue: &h, saturation: &s)
+            hue = h
+            saturation = s
             self.setSelectedPoint(point: point)
             self.sendActions(for: UIControl.Event.valueChanged)
         }
@@ -193,7 +197,11 @@ public class EFColorWheelView: UIControl {
         for y in 0 ..< Int(size.width) {
             for x in 0 ..< Int(size.height) {
                 var hue: CGFloat = 0, saturation: CGFloat = 0, a: CGFloat = 0.0
-                self.ef_colorWheelValueWithPosition(position: CGPoint(x: x, y: y), hue: &hue, saturation: &saturation)
+                var h = hue
+                var s = saturation
+                ef_colorWheelValueWithPosition(position: CGPoint(x: x, y: y), hue: &h, saturation: &s)
+                hue = h
+                saturation = s
 
                 var rgb: RGB = RGB(1, 1, 1, 0)
                 if saturation < 1.0 {
